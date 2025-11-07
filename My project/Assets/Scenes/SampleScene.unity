@@ -4521,7 +4521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   prefabId: 3
-  damage: 10
+  damage: 1000
   count: 1
   speed: 0
 --- !u!1 &255044173
@@ -8891,7 +8891,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 9.666667
+  orthographic size: 9.583333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
