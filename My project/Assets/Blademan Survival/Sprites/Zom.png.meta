@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d199a3da15ac58e489af6b7d1ebd086e
+guid: 1bea874b69e5f384ea08907337eab62b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,9 +47,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 18
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,127 +93,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tiles2_0
+      name: Zom_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 19
-        width: 18
-        height: 18
+        y: 572
+        width: 256
+        height: 452
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d138d043b89b0a04fbdc3297c78be359
-      internalID: 1183756301
+      spriteID: 961ce77611d4da24ea6cedcbc06846f8
+      internalID: 344549534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles2_1
+      name: Zom_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 19
-        width: 18
-        height: 18
+        x: 256
+        y: 572
+        width: 256
+        height: 452
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 615254f3087ae1e4ba1c2d3ebb14a235
-      internalID: -730253838
+      spriteID: 48d833368c62b4e49948bc1e64443b17
+      internalID: -1167039209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles2_2
+      name: Zom_2
       rect:
         serializedVersion: 2
-        x: 38
-        y: 19
-        width: 18
-        height: 18
+        x: 512
+        y: 572
+        width: 256
+        height: 452
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6965570acd28c2247ab4f39a0d2acdf4
-      internalID: 496453513
+      spriteID: 777e8dc8e41b12343a83b8544f6049a0
+      internalID: -995701426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles2_3
+      name: Zom_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 572
+        width: 256
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9627625dd4fe5ef46a059a9581b824e7
+      internalID: 504562590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zom_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 18
-        height: 18
+        y: 78
+        width: 256
+        height: 452
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 584ed9768e4fa444f8fe2978d0145b10
-      internalID: -334725921
+      spriteID: 1a84f3f933752384297b90ef55ef5b0e
+      internalID: 1752115153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles2_4
+      name: Zom_5
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 18
-        height: 18
+        x: 256
+        y: 78
+        width: 256
+        height: 452
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9aa186d2ef64c5547b743c8b8ff2ee12
-      internalID: -1921593344
+      spriteID: 65e9f8046265e2c4f9dae8a5f95a8969
+      internalID: 1669378756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles2_5
+      name: Zom_6
       rect:
         serializedVersion: 2
-        x: 38
-        y: 0
-        width: 18
-        height: 18
+        x: 512
+        y: 78
+        width: 256
+        height: 452
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f534ba95e7574a4ebb7ebacfde6ac23
-      internalID: -1838825543
+      spriteID: ea2646adcc29ee342a8ab20e0b6bc9d5
+      internalID: 933226368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zom_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 78
+        width: 256
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e08761c50a53642a71052919d1d009
+      internalID: 1124277166
       vertices: []
       indices: 
       edges: []
@@ -229,12 +271,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tiles2_0: 1183756301
-      Tiles2_1: -730253838
-      Tiles2_2: 496453513
-      Tiles2_3: -334725921
-      Tiles2_4: -1921593344
-      Tiles2_5: -1838825543
+      Zom_0: 344549534
+      Zom_1: -1167039209
+      Zom_2: -995701426
+      Zom_3: 504562590
+      Zom_4: 1752115153
+      Zom_5: 1669378756
+      Zom_6: 933226368
+      Zom_7: 1124277166
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
