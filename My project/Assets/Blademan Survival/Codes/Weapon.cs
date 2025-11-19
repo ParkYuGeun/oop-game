@@ -18,13 +18,10 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GameManager.Instance.player;
     }
 
-    public void Start()
-    {
-        Init();
-    }
+
 
     public void Update()
     {
@@ -69,19 +66,38 @@ public class Weapon : MonoBehaviour
 
         if (id == 0)
             Batch();
+
+        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);   //player오브젝트가 가지고있는 자식 중 ApplyGear을 가지고있는 모든 컴포넌트들이 실행함
     }
 
-    void Init()
+    public void Init(ItemData data)
     {
+        //Basic Set
+        name = "Weapon" + data.itemId;
+        transform.parent = player.transform;    //부모 플레이어로 관리
+        transform.localPosition = Vector3.zero; //생성위치 플레이어위치로 초기화
+        //Property Set
+        id = data.itemId;
+        damage = data.baseDamage;
+        count = data.baseCount;
+
+        for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++) { 
+            if(data.projecTile == GameManager.Instance.pool.prefabs[index])
+            {
+                prefabId = index;
+                break;
+            }
+        }
+
         switch (id)
         {
             case 0:
-                speed = -150;
+                speed = 150;
                 Batch();
                 break;
 
             case 1:
-                speed = 1f;
+                speed = 0.4f;
                 break;
             case 2:
                 speed = 2;
@@ -90,6 +106,7 @@ public class Weapon : MonoBehaviour
             default:
                 break;
         }
+        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);   //player오브젝트가 가지고있는 자식 중 ApplyGear을 가지고있는 모든 컴포넌트들이 실행함
     }
 
     void Batch()
