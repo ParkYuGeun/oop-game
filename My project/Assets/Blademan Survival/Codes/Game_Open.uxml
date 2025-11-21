@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="width: 100%; height: 100%; background-color: rgba(83, 0, 2, 0.72); align-items: stretch; justify-content: flex-start;">
+        <ui:Button text="Play" display-tooltip-when-elided="true" style="left: 20%; top: 55%; width: 60%; height: 15%; font-size: 30%; -unity-font: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#Arial&quot;); transition-property: all, ignored; transition-duration: 0s, 0s; transition-timing-function: ease, ease; transition-delay: 0s, 0s;" />
+        <ui:Button text="Exit" display-tooltip-when-elided="true" style="height: 15%; width: 60%; left: 20%; top: 60%; -unity-font: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#Arial&quot;); font-size: 30%;" />
+        <ui:Label text="Blademan Survival" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Blademan%20Survival/Fonts/neodgm.ttf?fileID=12800000&amp;guid=e715fcabbb6163e48b780b3b92979f8e&amp;type=3#neodgm&quot;); left: 30%; top: 20%; -unity-text-align: upper-left; align-items: center; position: absolute; font-size: 40%;" />
+    </ui:VisualElement>
+</ui:UXML>
