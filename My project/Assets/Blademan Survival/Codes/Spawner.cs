@@ -16,6 +16,10 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.isLive)
+        {
+            return;
+        }
         timer += Time.deltaTime;    //10초당 레벨 1씩 올라가는 기능
         level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.GameTime / 10f), SpawnData.Length-1);  //mathf.floortoint = int형변환(버림) 올림은 celltoint
 

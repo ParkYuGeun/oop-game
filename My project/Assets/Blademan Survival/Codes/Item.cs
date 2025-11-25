@@ -13,20 +13,45 @@ public class Item : MonoBehaviour
 
     Image icon;
     Text textLevel;
+    Text textName;
+    Text textDesc;
 
-     void Awake()
+
+    void Awake()
     {
         icon = GetComponentsInChildren<Image>()[1]; //자기자신이 배열의 첫번째임
         icon.sprite = data.itemIcon;
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
+        textName = texts[1];
+        textDesc = texts[2];
 
     }
 
-     void LateUpdate()
+    private void OnEnable()
     {
+        textName.text = data.itemName;
         textLevel.text = "LV." + (level + 1);
+        switch (data.Type)
+        {
+            case ItemData.ItemType.Melee:
+            case ItemData.ItemType.Range:
+                textDesc.text = string.Format(data.itemDesc, data.damages[level]*100, data.counts[level]);
+                break;
+            case ItemData.ItemType.Shoe:
+            case ItemData.ItemType.Glove:
+                textDesc.text = string.Format(data.itemDesc, data.damages[level]*100);
+
+                break;
+            case ItemData.ItemType.Heal:
+                textDesc.text = string.Format(data.itemDesc);
+                break;
+        }
+
+
     }
+
+
 
     public void onClick()
     {

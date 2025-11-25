@@ -25,6 +25,10 @@ public class Weapon : MonoBehaviour
 
     public void Update()
     {
+        if (!GameManager.Instance.isLive)
+        {
+            return;
+        }
         switch (id)
         {
             case 0:
@@ -92,7 +96,7 @@ public class Weapon : MonoBehaviour
         switch (id)
         {
             case 0:
-                speed = 150;
+                speed = -150;
                 Batch();
                 break;
 

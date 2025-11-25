@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="Item",menuName ="Scriptable Object/ItemData")]
-public class ItemData : ScriptableObject
+public class ItemData : ScriptableObject    //scriptable object 필수
 {
     public enum ItemType {Melee, Range, Glove, Shoe, Heal }
 
@@ -12,6 +12,7 @@ public class ItemData : ScriptableObject
     public ItemType Type; 
     public int itemId;      //Id
     public string itemName; //이름
+    [TextArea]   //밑 문자를 2줄 이상 작성 가능
     public string itemDesc; //설명
     public Sprite itemIcon; //아이콘
 

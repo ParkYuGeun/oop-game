@@ -30,6 +30,10 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.Instance.isLive)
+        {
+            return;
+        }
         if (!isalive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))  //0번째 레이어 상태의 이름이Hot이라면
             return; 
 
@@ -42,6 +46,10 @@ public class Enemy : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!GameManager.Instance.isLive)
+        {
+            return;
+        }
         if (!isalive)
             return;
         spriter.flipX = target.position.x < rigid.position.x;   
