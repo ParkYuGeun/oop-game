@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
 
     void Awake()
     {
-        icon = GetComponentsInChildren<Image>()[1]; //자기자신이 배열의 첫번째임
+        icon = GetComponentsInChildren<Image>()[1]; //자기자신이 배열의 0번째임
         icon.sprite = data.itemIcon;
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
@@ -28,7 +28,7 @@ public class Item : MonoBehaviour
 
     }
 
-    private void OnEnable()
+    private void OnEnable() //텍스트 설정
     {
         textName.text = data.itemName;
         textLevel.text = "LV." + (level + 1);
@@ -40,6 +40,7 @@ public class Item : MonoBehaviour
                 break;
             case ItemData.ItemType.Shoe:
             case ItemData.ItemType.Glove:
+            case ItemData.ItemType.Blade:
                 textDesc.text = string.Format(data.itemDesc, data.damages[level]*100);
 
                 break;
@@ -59,10 +60,11 @@ public class Item : MonoBehaviour
         {
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
+            case ItemData.ItemType.Blade:
                 if (level == 0)
                 {
                     GameObject newWeapon = new GameObject();
-                    weapon = newWeapon.AddComponent<Weapon>();
+                    weapon = newWeapon.AddComponent<Weapon>();  //addComponenet는 gameObject가 아니라 Weapon컴포넌트를 반환 따라서 이미 Weapon변수 만들어 둔 것
                     weapon.Init(data);
                 }
                 else {

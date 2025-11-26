@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
      public void GameStart()
     {
         health = maxHealth;
-        uiLevelUp.select(0);    //첫번째무기 선택
+        uiLevelUp.select(5);    //첫번째무기 선택
         resume();
     }
 

@@ -10,11 +10,11 @@ public class Weapon : MonoBehaviour
     public int prefabId;//pool에서 받는 prefab번호
     public float damage;
     public int count;   //원거리 관통 , 근거리는 -1
-    public float speed;
+    public float speed; //공속
 
-    float timer;
-    Player player;
-    Vector3 tempDir = Vector3.right;
+    float timer;    
+    Player player;  
+    Vector3 tempDir = Vector3.right;    
 
     void Awake()
     {
@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
                     Fire();
                 }
                 break;
-            case 2:
+            case 5:
                 timer += Time.deltaTime;
                 // 타이머가 공격 주기(speed + 1)를 넘으면 활성화 실행
                 if (timer > speed)
@@ -62,7 +62,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    //테스트레벨업
+    //레벨업
     public void Levelup(float damage, int count)
     {
         this.damage = damage;
@@ -77,14 +77,14 @@ public class Weapon : MonoBehaviour
     public void Init(ItemData data)
     {
         //Basic Set
-        name = "Weapon" + data.itemId;
-        transform.parent = player.transform;    //부모 플레이어로 관리
+        name = "Weapon" + data.itemId;          //게임오브젝트 이름
+        transform.parent = player.transform;    //부모를 플레이어로 관리
         transform.localPosition = Vector3.zero; //생성위치 플레이어위치로 초기화
         //Property Set
         id = data.itemId;
         damage = data.baseDamage;
         count = data.baseCount;
-
+        //프리펩Id를 poolmanager 데이터와 비교해서 확실하게 index받기
         for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++) { 
             if(data.projecTile == GameManager.Instance.pool.prefabs[index])
             {
@@ -103,9 +103,8 @@ public class Weapon : MonoBehaviour
             case 1:
                 speed = 0.4f;
                 break;
-            case 2:
+            case 5:
                 speed = 2;
-                ;
                 break;
             default:
                 break;
@@ -160,10 +159,8 @@ public class Weapon : MonoBehaviour
         // 1. 오브젝트 풀에서 공격 오브젝트(슬래시 이펙트)를 가져옴
         Transform bullet = GameManager.Instance.pool.Get(prefabId).transform;
         
-
         // 2. 부모를 무기 오브젝트(이 스크립트가 붙은 오브젝트)로 설정하여 Hierarchy 정리
         bullet.parent = transform;
-
         // --- [새로 추가된 위치 및 회전 계산 로직] ---
 
         // 3. 플레이어의 입력 방향 벡터를 가져옴 (dir)
@@ -171,7 +168,6 @@ public class Weapon : MonoBehaviour
         dir = (dir.normalized) / 2;
 
         // 4. 입력이 없는 경우 기본 방향 설정 (예: 정면)
-        
         if (dir != Vector3.zero)
         {         
             tempDir =dir; // 혹은 이전에 캐릭터가 바라보던 방향을 사용
