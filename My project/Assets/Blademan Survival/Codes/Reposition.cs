@@ -22,12 +22,24 @@ public class Reposition : MonoBehaviour
         float diffx = Mathf.Abs(PlayerPosition.x - MyPosition.x);
         float diffy = Mathf.Abs(PlayerPosition.y - MyPosition.y);
 
-        Vector3 PlayerDir = GameManager.Instance.player.inputVec;
+      
+
+        Vector3 PlayerDir = GameManager.Instance.player.inputVec;   //움직여야하는 방향
         float dirx = PlayerDir.x < 0 ? -1 : 1;
         float diry = PlayerDir.y < 0 ? -1 : 1;
 
         switch (transform.tag)
         {
+            case "Building":
+                if (PlayerPosition.x > transform.position.x) {
+                    transform.Translate(Vector3.right * 30);
+                }
+                else if (PlayerPosition.x < transform.position.x)
+                {
+                    transform.Translate(Vector3.left * 30);
+                }
+                break;
+
             case "Ground":
                 if (diffx > diffy)
                 {
