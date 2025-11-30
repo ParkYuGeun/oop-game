@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gear : MonoBehaviour
 {
     public ItemData.ItemType type;  //데이터에서 무기가 아닌것들
-    public float rate;  //레벨별 수치
+    public float rate;              //레벨별 수치
 
     public void Init(ItemData data) {
         //Basic
@@ -46,6 +46,9 @@ public class Gear : MonoBehaviour
             switch (weapon.id) {
                 case 0:     //근거리일때
                     weapon.speed = 150 + (150 * rate);
+                    break;
+                case 5:     //근거리일때
+                    weapon.speed = weapon.speed - (3 * rate);
                     break;
                 default:    //원거리일때
                     weapon.speed = 0.5f*(1f-rate);

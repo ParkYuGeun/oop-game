@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
      void OnCollisionStay2D(Collision2D collision)   //충돌하고있을시
     {
-        if (!GameManager.Instance.isLive)
+        if (!GameManager.Instance.isLive || collision.gameObject.CompareTag("Building"))
             return;
 
         GameManager.Instance.health -= Time.deltaTime * 10;

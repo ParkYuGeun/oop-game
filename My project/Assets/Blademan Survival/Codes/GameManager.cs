@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int kill;
     public int exp;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
+
     [Header("# Game Object")]
     public Player player;
     public PoolManager pool;
@@ -29,29 +30,29 @@ public class GameManager : MonoBehaviour
 
      void Awake()
     {
-        Instance = this;
+        Instance = this;            //필수
     }
 
-     public void GameStart()
+     public void GameStart()        //버튼에 할당
     {
         health = maxHealth;
         uiLevelUp.select(5);    //첫번째무기 선택
         resume();
     }
 
-    public void GameOver()
+    public void GameOver()      //Player 사망에 할당
     {
         StartCoroutine(GameOverRoutine());
     }
 
-    public void GameVictory()
+    public void GameVictory()   //gameTime다되면 호출
     {
         StartCoroutine(GameVictoryRoutine());
     }
 
-    public void GameRetry()
+    public void GameRetry()     //result 버튼에 할당
     {
-        SceneManager.LoadScene(0);  //씬 이름으로도 호출 가능
+        SceneManager.LoadScene(0);  //index대신 "씬 이름"으로도 호출 가능
     }
 
     void Update()
