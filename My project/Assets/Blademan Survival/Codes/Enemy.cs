@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float maxHealth;
     public float Health;
-    public RuntimeAnimatorController[] animcon; //·¹º§¿¡ µû¶ó ¹Ù²Ü ½ºÅ²
+    public RuntimeAnimatorController[] animcon; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ ï¿½ï¿½Å²
     public Rigidbody2D target;
 
     bool isalive;  
@@ -29,37 +29,41 @@ public class Enemy : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        if (!isalive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))  //0¹øÂ° ·¹ÀÌ¾î »óÅÂÀÇ ÀÌ¸§ÀÌHotÀÌ¶ó¸é
+    {  
+        if(!GameManager.Instance.isLive)
+            return;
+        if (!isalive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))  //0ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½Hotï¿½Ì¶ï¿½ï¿½
             return; 
 
-        Vector2 dirvec = target.position - rigid.position;  //ÇÃ·¹ÀÌ¾îÄ³¸¯ÅÍÀ§Ä¡ - ¸÷À§Ä¡ = ¹æÇâ
-        Vector2 nextvec = dirvec.normalized * speed * Time.deltaTime;   //¸÷ÀÌ ¹Þ´Â ÀÌµ¿
+        Vector2 dirvec = target.position - rigid.position;  //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ - ï¿½ï¿½ï¿½ï¿½Ä¡ = ï¿½ï¿½ï¿½ï¿½
+        Vector2 nextvec = dirvec.normalized * speed * Time.deltaTime;   //ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½Ìµï¿½
         rigid.MovePosition(rigid.position+nextvec);
-        rigid.velocity = Vector2.zero;  //¸÷ ÀÚÃ¼¼Óµµ Á¦°Å
+        rigid.velocity = Vector2.zero;  //ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
 
     }
 
     private void LateUpdate()
     {
+        if(!GameManager.Instance.isLive)
+            return;
         if (!isalive)
             return;
         spriter.flipX = target.position.x < rigid.position.x;   
     }
 
-     void OnEnable()    //¸÷ÀÌ Àç»ç¿ëµÉ ½Ã ÃÊ±âÈ­µÇ´Â ¼³Á¤
+     void OnEnable()    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         target = GameManager.Instance.player.GetComponent<Rigidbody2D>();
         isalive = true;
-        col.enabled = true;    //ÄÝ¶óÀÌ´õ ²ô´Â ¹ý = enabled
-        rigid.simulated = true;    //¸®Áöµå¹Ùµð ²ô´Â¹ý = simulated
+        col.enabled = true;    //ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ = enabled
+        rigid.simulated = true;    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½ï¿½ï¿½Â¹ï¿½ = simulated
         spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         Health = maxHealth;
 
     }
 
-    public void Init(SpawnData data)    //»ý¼ºµÉ¶§ ½ºÆåÁ¤ÇØÁÖ±â
+    public void Init(SpawnData data)    //ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
     {
         anim.runtimeAnimatorController = animcon[data.spritetype];
         speed = data.speed;
@@ -69,22 +73,22 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !isalive)    //Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®°¡ nulletÀÌ ¾Æ´Ï°Å³ª enemy°¡ Á×¾îÀÖÀ»¶§´Â ¾Æ¹«°Íµµ¾øÀÌ ¹ÝÈ¯
+        if (!collision.CompareTag("Bullet") || !isalive)    //ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ nulletï¿½ï¿½ ï¿½Æ´Ï°Å³ï¿½ enemyï¿½ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
             return;
 
         Health -= collision.GetComponent<Bullet>().damage;
         StartCoroutine(KnockBack());
 
         if (Health > 0) {
-            anim.SetTrigger("Hit"); //¾Ö´Ï¸ÞÀÌ¼Ç ÄÁÆ®·Ñ·¯ Æ®¸®°Å ÀÛµ¿
+            anim.SetTrigger("Hit"); //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½
 
         }
 
         else
         {
             isalive = false;
-            col.enabled = false;    //ÄÝ¶óÀÌ´õ ²ô´Â ¹ý = enabled
-            rigid.simulated = false;    //¸®Áöµå¹Ùµð ²ô´Â¹ý = simulated
+            col.enabled = false;    //ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ = enabled
+            rigid.simulated = false;    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½ï¿½ï¿½Â¹ï¿½ = simulated
             spriter.sortingOrder = 1;
             anim.SetBool("Dead",true);
             GameManager.Instance.kill++;

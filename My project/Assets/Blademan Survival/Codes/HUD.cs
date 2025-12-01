@@ -22,20 +22,20 @@ public class HUD : MonoBehaviour
         switch (type) { 
         case InfoType.Exp:
                 float curExp = GameManager.Instance.exp;
-                float maxExp = GameManager.Instance.nextExp[GameManager.Instance.level];
+                float maxExp = GameManager.Instance.nextExp[Mathf.Min(GameManager.Instance.level, GameManager.Instance.nextExp.Length - 1)];
                 mySlider.value = curExp / maxExp;
                 break;
         case InfoType.Level:
-                myText.text = string.Format("Lv.{0:F0}", GameManager.Instance.level);   //{0}Àº 0¹ø¤Š ÀÎÀÚ°ªÀÌ µé¾î°£´Ù´Â ¶æ, :F0Àº ¼Ò¼öÁ¡ÀÌ ¾ø´Ù´Â ¶æ
+                myText.text = string.Format("Lv.{0:F0}", GameManager.Instance.level);   //{0}ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ ï¿½ï¿½î°£ï¿½Ù´ï¿½ ï¿½ï¿½, :F0ï¿½ï¿½ ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½
             break;
         case InfoType.Kill:
-                myText.text = string.Format("{0:F0}", GameManager.Instance.kill);   //{0}Àº 0¹ø¤Š ÀÎÀÚ°ªÀÌ µé¾î°£´Ù´Â ¶æ, :F0Àº ¼Ò¼öÁ¡ÀÌ ¾ø´Ù´Â ¶æ
+                myText.text = string.Format("{0:F0}", GameManager.Instance.kill);   //{0}ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ ï¿½ï¿½î°£ï¿½Ù´ï¿½ ï¿½ï¿½, :F0ï¿½ï¿½ ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½
                 break;
         case InfoType.Time:
                 float remainTime = GameManager.Instance.maxGameTime - GameManager.Instance.GameTime;
                 int min = Mathf.FloorToInt(remainTime / 60);
                 int sec = Mathf.FloorToInt(remainTime % 60);
-                myText.text = string.Format("{0:D2}:{1:D2}", min, sec); //D = ÀÚ¸®¼ö
+                myText.text = string.Format("{0:D2}:{1:D2}", min, sec); //D = ï¿½Ú¸ï¿½ï¿½ï¿½
                 break;
         case InfoType.Health:
                 float curHealth = GameManager.Instance.health;

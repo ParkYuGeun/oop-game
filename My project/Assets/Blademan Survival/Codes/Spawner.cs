@@ -16,8 +16,10 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;    //10ÃÊ´ç ·¹º§ 1¾¿ ¿Ã¶ó°¡´Â ±â´É
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.GameTime / 10f), SpawnData.Length-1);  //mathf.floortoint = intÇüº¯È¯(¹ö¸²) ¿Ã¸²Àº celltoint
+        if(!GameManager.Instance.isLive)
+            return;
+        timer += Time.deltaTime;    //10ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ã¶ó°¡´ï¿½ ï¿½ï¿½ï¿½
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.GameTime / 10f), SpawnData.Length-1);  //mathf.floortoint = intï¿½ï¿½ï¿½ï¿½È¯(ï¿½ï¿½ï¿½ï¿½) ï¿½Ã¸ï¿½ï¿½ï¿½ celltoint
 
         if (timer > SpawnData[level].spawntime)
         {
@@ -27,7 +29,7 @@ public class Spawner : MonoBehaviour
 
     }
 
-    void Spawn()    //½Ã°£¸¶´Ù spawn½ÇÇà, spawnÀº poolmanager.get½ÇÇà
+    void Spawn()    //ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ spawnï¿½ï¿½ï¿½ï¿½, spawnï¿½ï¿½ poolmanager.getï¿½ï¿½ï¿½ï¿½
     {
         GameObject enemy =  GameManager.Instance.pool.Get(0);
         enemy.transform.position = SpawnPoint[Random.Range(1,SpawnPoint.Length)].position;
@@ -35,12 +37,12 @@ public class Spawner : MonoBehaviour
     }
 }
 
-//·¹º§½Ã½ºÅÛ
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½
 [System.Serializable]
 public class SpawnData
 {
     public float spawntime;
-    public int spritetype;  //¸÷ Á¾·ù
+    public int spritetype;  //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public int health;
     public float speed;
 }

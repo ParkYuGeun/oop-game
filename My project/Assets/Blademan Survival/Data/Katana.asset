@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5301267a62bd3204680163aad3be4319, type: 3}
+  m_Name: Katana
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemId: 0
+  itemName: "\uCE74\uD0C0\uB098"
+  itemDesc: "\uB370\uBBF8\uC9C0 {0}% \uC0C1\uC2B9 (\uC784\uC2DC \uD14D\uC2A4\uD2B8\uC785\uB2C8\uB2E4)\n\uD68C\uC804\uCCB4
+    {1}\uAC1C \uCD94\uAC00 (\uD544\uC694\uC2DC \uBCC0\uACBD\uD558\uC138\uC694)"
+  itemIcon: {fileID: 1737672109, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  baseDamage: 4.5
+  baseCount: 1
+  damages:
+  - 0.5
+  - 1
+  - 1.5
+  - 2
+  - 3
+  counts: 0100000001000000010000000100000002000000
+  projectile: {fileID: 1886767409047701764, guid: ba97b5e2b867b4448afa671bd742596c, type: 3}

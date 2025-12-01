@@ -22,21 +22,27 @@ public class Player : MonoBehaviour
     }
 
     void Update()
-    {
-        inputVec.x = Input.GetAxis("Horizontal");   //ÀÔ·Â°ª¿¡ µû¸¥ º¤ÅÍ°ª Áõ°¡
+    {  
+        if(!GameManager.Instance.isLive)
+            return;
+        inputVec.x = Input.GetAxis("Horizontal");   //ï¿½Ô·Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½
         inputVec.y = Input.GetAxis("Vertical");
-        //GetAxisRaw = µüµü ²÷¾îÁö´Â ÀÎÇ²
+        //GetAxisRaw = ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç²
     }
 
     void FixedUpdate()
     {
+        if(!GameManager.Instance.isLive)
+            return;
         Vector2 nextVec = inputVec.normalized*speed*Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position+nextVec); //inputvecÀ» Ä³¸¯ÅÍ¿¡ ¶§·Á¹ÚÀ½
+        rigid.MovePosition(rigid.position+nextVec); //inputvecï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
     void LateUpdate()
     {
-        anim.SetFloat("speed",inputVec.magnitude);  //.magnitude º¤ÅÍÀÇ ¼ø¼ö±æÀÌ
+        if(!GameManager.Instance.isLive)
+            return;
+        anim.SetFloat("speed",inputVec.magnitude);  //.magnitude ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (inputVec.x != 0)
         {
             spriter.flipX = inputVec.x < 0;
