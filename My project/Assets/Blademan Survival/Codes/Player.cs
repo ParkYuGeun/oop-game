@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
             }
             // 플레이어 사망 애니메이션이 없음 여기서 버그 발생
             anim.SetTrigger("Dead");
+            GameManager.Instance.GameOver();
         }
     }
 }
