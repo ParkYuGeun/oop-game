@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Gear : MonoBehaviour
 {
-    public ItemData.ItemType type;  //µ¥ÀÌÅÍ¿¡¼­ ¹«±â°¡ ¾Æ´Ñ°Íµé
-    public float rate;              //·¹º§º° ¼öÄ¡
+    public ItemData.ItemType type;  //ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½Æ´Ñ°Íµï¿½
+    public float rate;              //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 
     public void Init(ItemData data) {
         //Basic
@@ -14,8 +14,8 @@ public class Gear : MonoBehaviour
         transform.parent = GameManager.Instance.player.transform;
         transform.localPosition = Vector3.zero;
         //Property
-        type = data.Type;   //±¸ºÐ¿ë
-        rate = data.damages[0]; //¼öÄ¡
+        type = data.Type;   //ï¿½ï¿½ï¿½Ð¿ï¿½
+        rate = data.damages[0]; //ï¿½ï¿½Ä¡
         ApplyGear();
     }
 
@@ -44,13 +44,13 @@ public class Gear : MonoBehaviour
         foreach (Weapon weapon in weapons)
         {
             switch (weapon.id) {
-                case 0:     //±Ù°Å¸®ÀÏ¶§
+                case 0:     //ï¿½Ù°Å¸ï¿½ï¿½Ï¶ï¿½
                     weapon.speed = 150 + (150 * rate);
                     break;
-                case 5:     //±Ù°Å¸®ÀÏ¶§
-                    weapon.speed = weapon.speed - (3 * rate);
+                case 5:     //ï¿½Ù°Å¸ï¿½ï¿½Ï¶ï¿½
+                    weapon.speed = 3 * (1f - rate);
                     break;
-                default:    //¿ø°Å¸®ÀÏ¶§
+                default:    //ï¿½ï¿½ï¿½Å¸ï¿½ï¿½Ï¶ï¿½
                     weapon.speed = 0.5f*(1f-rate);
                     break;
             }
