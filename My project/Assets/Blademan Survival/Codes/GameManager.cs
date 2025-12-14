@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; //¹Ù·Î ¸Þ¸ð¸®·Î ÀÌµ¿
+    public static GameManager Instance; //ï¿½Ù·ï¿½ ï¿½Þ¸ð¸®·ï¿½ ï¿½Ìµï¿½
     [Header("# Game Control")]
     public float GameTime;
     public float maxGameTime = 2 * 10f;
@@ -30,29 +30,32 @@ public class GameManager : MonoBehaviour
 
      void Awake()
     {
-        Instance = this;            //ÇÊ¼ö
+        Instance = this;            //ï¿½Ê¼ï¿½
     }
 
-     public void GameStart()        //¹öÆ°¿¡ ÇÒ´ç
+     public void GameStart()        //ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ò´ï¿½
     {
         health = maxHealth;
-        uiLevelUp.select(5);    //Ã¹¹øÂ°¹«±â ¼±ÅÃ
+        uiLevelUp.select(5);    //Ã¹ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         resume();
+
+        AudioManager.Instance.PlayBgm(true);
+        AudioManager.Instance.PlaySfx(AudioManager.SFX.SELECT);
     }
 
-    public void GameOver()      //Player »ç¸Á¿¡ ÇÒ´ç
+    public void GameOver()      //Player ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
     {
         StartCoroutine(GameOverRoutine());
     }
 
-    public void GameVictory()   //gameTime´ÙµÇ¸é È£Ãâ
+    public void GameVictory()   //gameTimeï¿½ÙµÇ¸ï¿½ È£ï¿½ï¿½
     {
         StartCoroutine(GameVictoryRoutine());
     }
 
-    public void GameRetry()     //result ¹öÆ°¿¡ ÇÒ´ç
+    public void GameRetry()     //result ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ò´ï¿½
     {
-        SceneManager.LoadScene(0);  //index´ë½Å "¾À ÀÌ¸§"À¸·Îµµ È£Ãâ °¡´É
+        SceneManager.LoadScene(0);  //indexï¿½ï¿½ï¿½ "ï¿½ï¿½ ï¿½Ì¸ï¿½"ï¿½ï¿½ï¿½Îµï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     void Update()
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
         if(!isLive)
             return;
         exp++;
-        if (exp == nextExp[Mathf.Min(level,nextExp.Length-1)])  //·¹º§ ÃÖ´ë´Â 10ÀÌÁö¸¸ nextLevel °³¼ö´Â 9°³ÀÌ´Ù
+        if (exp == nextExp[Mathf.Min(level,nextExp.Length-1)])  //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ 10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nextLevel ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 9ï¿½ï¿½ï¿½Ì´ï¿½
         {
             level++;
             exp = 0;
@@ -99,10 +102,13 @@ public class GameManager : MonoBehaviour
     IEnumerator GameOverRoutine()
     {
         isLive = false;
-        yield return new WaitForSeconds(0.5f);  //»ç¸Á ¾Ö´Ï¸ÞÀÌ¼Ç ±â´Ù¸®´Â ½Ã°£
+        yield return new WaitForSeconds(0.5f);  //ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
         uiResult.gameObject.SetActive(true);
         uiResult.Lose();
         stop();
+
+        AudioManager.Instance.PlayBgm(false);
+        AudioManager.Instance.PlaySfx(AudioManager.SFX.LOSE);
     }
 
     IEnumerator GameVictoryRoutine()
@@ -113,6 +119,9 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
         stop();
+
+        AudioManager.Instance.PlayBgm(false);
+        AudioManager.Instance.PlaySfx(AudioManager.SFX.WIN);
     }
 }
 
