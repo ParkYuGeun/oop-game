@@ -7,7 +7,7 @@ public class LevelUp : MonoBehaviour
     RectTransform rect;
     Item[] Items;
 
-    void Awake()
+     void Awake()
     {
          rect = GetComponent<RectTransform>();
         Items = GetComponentsInChildren<Item>(true);    //활성화 되어있는 오브젝트만 가져오기
@@ -19,8 +19,6 @@ public class LevelUp : MonoBehaviour
         rect.localScale = Vector3.one;
         GameManager.Instance.stop();
 
-        AudioManager.Instance.PlaySfx(AudioManager.SFX.LEVELUP);
-        AudioManager.Instance.EffectBgm(true);
     }
 
     public void Hide()  //하위오브젝튿의 버튼에서 컨트롤
@@ -28,8 +26,6 @@ public class LevelUp : MonoBehaviour
         rect.localScale = Vector3.zero;
         GameManager.Instance.resume();
 
-        AudioManager.Instance.PlaySfx(AudioManager.SFX.SELECT);
-        AudioManager.Instance.EffectBgm(false);
     }
 
     public void select(int index) { //게임매니저에서 처음 1번 사용

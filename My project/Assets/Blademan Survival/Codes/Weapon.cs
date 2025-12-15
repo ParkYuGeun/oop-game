@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int id;  //ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½Ï´ï¿½ update
-    public int prefabId;//poolï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ prefabï¿½ï¿½È£
+    public int id;  //ÀÌ ÄÚµå ³»ºÎ¿¡¼­ ½Äº°ÇÏ´Â update
+    public int prefabId;//pool¿¡¼­ ¹Þ´Â prefab¹øÈ£
     public float damage;
-    public int count;   //ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ , ï¿½Ù°Å¸ï¿½ï¿½ï¿½ -1
-    public float speed; //ï¿½ï¿½ï¿½ï¿½
+    public int count;   //¿ø°Å¸® °üÅë , ±Ù°Å¸®´Â -1
+    public float speed; //°ø¼Ó
 
     float timer;    
     Player player;  
@@ -44,7 +44,7 @@ public class Weapon : MonoBehaviour
                 break;
             case 5:
                 timer += Time.deltaTime;
-                // Å¸ï¿½Ì¸Ó°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½(speed + 1)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+                // Å¸ÀÌ¸Ó°¡ °ø°Ý ÁÖ±â(speed + 1)¸¦ ³ÑÀ¸¸é È°¼ºÈ­ ½ÇÇà
                 if (timer > speed)
                 {                   
                     SlashOn();
@@ -62,7 +62,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //·¹º§¾÷
     public void Levelup(float damage, int count)
     {
         this.damage = damage;
@@ -71,20 +71,20 @@ public class Weapon : MonoBehaviour
         if (id == 0)
             Batch();
 
-        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);   //playerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ ApplyGearï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);   //player¿ÀºêÁ§Æ®°¡ °¡Áö°íÀÖ´Â ÀÚ½Ä Áß ApplyGearÀ» °¡Áö°íÀÖ´Â ¸ðµç ÄÄÆ÷³ÍÆ®µéÀÌ ½ÇÇàÇÔ
     }
 
     public void Init(ItemData data)
     {
         //Basic Set
-        name = "Weapon" + data.itemId;          //ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¸ï¿½
-        transform.parent = player.transform;    //ï¿½Î¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-        transform.localPosition = Vector3.zero; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê±ï¿½È­
+        name = "Weapon" + data.itemId;          //°ÔÀÓ¿ÀºêÁ§Æ® ÀÌ¸§
+        transform.parent = player.transform;    //ºÎ¸ð¸¦ ÇÃ·¹ÀÌ¾î·Î °ü¸®
+        transform.localPosition = Vector3.zero; //»ý¼ºÀ§Ä¡ ÇÃ·¹ÀÌ¾îÀ§Ä¡·Î ÃÊ±âÈ­
         //Property Set
         id = data.itemId;
         damage = data.baseDamage;
         count = data.baseCount;
-        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Idï¿½ï¿½ poolmanager ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ È®ï¿½ï¿½ï¿½Ï°ï¿½ indexï¿½Þ±ï¿½
+        //ÇÁ¸®ÆéId¸¦ poolmanager µ¥ÀÌÅÍ¿Í ºñ±³ÇØ¼­ È®½ÇÇÏ°Ô index¹Þ±â
         for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++) { 
             if(data.projecTile == GameManager.Instance.pool.prefabs[index])
             {
@@ -109,7 +109,7 @@ public class Weapon : MonoBehaviour
             default:
                 break;
         }
-        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);   //playerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ ApplyGearï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);   //player¿ÀºêÁ§Æ®°¡ °¡Áö°íÀÖ´Â ÀÚ½Ä Áß ApplyGearÀ» °¡Áö°íÀÖ´Â ¸ðµç ÄÄÆ÷³ÍÆ®µéÀÌ ½ÇÇàÇÔ
     }
 
     void Batch()
@@ -123,7 +123,7 @@ public class Weapon : MonoBehaviour
             }
             else {
                 bullet = GameManager.Instance.pool.Get(prefabId).transform;
-                bullet.parent = transform;  //poolmanagerï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+                bullet.parent = transform;  //poolmanager¿¡¼­ ºÎ¸ð º¯°æ
             }
            
 
@@ -133,7 +133,7 @@ public class Weapon : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * i / count;
             bullet.Rotate(rotVec);
             bullet.Translate(bullet.up * 1.5f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage,-1,Vector3.zero);  //-1ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½ï¿½
+            bullet.GetComponent<Bullet>().Init(damage,-1,Vector3.zero);  //-1Àº ¹«ÇÑ°üÅë
             
         }
 
@@ -152,52 +152,49 @@ public class Weapon : MonoBehaviour
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         bullet.GetComponent<Bullet>().Init(damage,count,dir);
-        AudioManager.Instance.PlaySfx(AudioManager.SFX.RANGE);
     }
 
     void SlashOn()
     {
-        // 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // 1. ¿ÀºêÁ§Æ® Ç®¿¡¼­ °ø°Ý ¿ÀºêÁ§Æ®(½½·¡½Ã ÀÌÆåÆ®)¸¦ °¡Á®¿È
         Transform bullet = GameManager.Instance.pool.Get(prefabId).transform;
         
-        // 2. ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®(ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Hierarchy ï¿½ï¿½ï¿½ï¿½
+        // 2. ºÎ¸ð¸¦ ¹«±â ¿ÀºêÁ§Æ®(ÀÌ ½ºÅ©¸³Æ®°¡ ºÙÀº ¿ÀºêÁ§Æ®)·Î ¼³Á¤ÇÏ¿© Hierarchy Á¤¸®
         bullet.parent = transform;
-        // --- [ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½] ---
+        // --- [»õ·Î Ãß°¡µÈ À§Ä¡ ¹× È¸Àü °è»ê ·ÎÁ÷] ---
 
-        // 3. ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (dir)
+        // 3. ÇÃ·¹ÀÌ¾îÀÇ ÀÔ·Â ¹æÇâ º¤ÅÍ¸¦ °¡Á®¿È (dir)
         Vector3 dir = GameManager.Instance.player.inputVec;
         dir = (dir.normalized) / 2;
 
-        // 4. ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½)
+        // 4. ÀÔ·ÂÀÌ ¾ø´Â °æ¿ì ±âº» ¹æÇâ ¼³Á¤ (¿¹: Á¤¸é)
         if (dir != Vector3.zero)
         {         
-            tempDir =dir; // È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            tempDir =dir; // È¤Àº ÀÌÀü¿¡ Ä³¸¯ÅÍ°¡ ¹Ù¶óº¸´ø ¹æÇâÀ» »ç¿ë
         }
 
         if (dir == Vector3.zero)
         {
-            dir = tempDir; // È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            dir = tempDir; // È¤Àº ÀÌÀü¿¡ Ä³¸¯ÅÍ°¡ ¹Ù¶óº¸´ø ¹æÇâÀ» »ç¿ë
         }
 
-        // 5. ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½: ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ dir ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1.5f ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-        // (Weapon ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½Ì¶ï¿½ï¿½, transform.position ï¿½ï¿½ï¿½ Vector3.zeroï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½.
-        // ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ Weaponï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Úµå¸¦ ï¿½Û¼ï¿½ï¿½Õ´Ï´ï¿½.)
+        // 5. À§Ä¡ °è»ê: ÇÃ·¹ÀÌ¾î À§Ä¡¿¡¼­ dir ¹æÇâÀ¸·Î 1.5f ¶³¾îÁø ÁöÁ¡
+        // (Weapon ¿ÀºêÁ§Æ®°¡ ÇÃ·¹ÀÌ¾îÀÇ ÀÚ½ÄÀÌ¶ó¸é, transform.position ´ë½Å Vector3.zero¸¦ »ç¿ëÇØ¾ß ÇÕ´Ï´Ù.
+        // ¿©±â¼­´Â WeaponÀÌ ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿¡ ÀÖ´Ù°í °¡Á¤ÇÏ°í ÄÚµå¸¦ ÀÛ¼ºÇÕ´Ï´Ù.)
 
-        // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ÀÌÆåÆ®°¡ ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿¡ »ý¼ºµÇµµ·Ï ¼³Á¤
         bullet.position = transform.position;
 
-        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, dir ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1.5f ï¿½Ìµï¿½
+        // ±× ´ÙÀ½, dir ¹æÇâÀ¸·Î 1.5f ÀÌµ¿
         bullet.Translate(dir.normalized * 0.5f, Space.World);
 
-        // 6. È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 'ï¿½ï¿½' ï¿½ï¿½ï¿½ï¿½(Vector3.upï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ dir ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ È¸ï¿½ï¿½
-        // ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Yï¿½ï¿½ï¿½ï¿½ dir ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½Ä¡ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
+        // 6. È¸Àü ¼³Á¤: ¿ÀºêÁ§Æ®ÀÇ '¾Õ' ¹æÇâ(Vector3.upÀ» °¡Á¤)ÀÌ dir ¹æÇâÀ» ÇâÇÏµµ·Ï È¸Àü
+        // ÀÌ È¸ÀüÀº ¹ß»çÃ¼ÀÇ ·ÎÄÃ YÃàÀÌ dir º¤ÅÍ¿Í ÀÏÄ¡ÇÏµµ·Ï ¸¸µì´Ï´Ù.
         bullet.rotation = Quaternion.FromToRotation(Vector3.left, dir);
 
-        // 7. ï¿½É·ï¿½Ä¡ ï¿½Ê±ï¿½È­
-        // Bullet ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ Init ï¿½Ô¼ï¿½ï¿½ï¿½ Vector3.zeroï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½, ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bullet ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ë´Ï´ï¿½.
+        // 7. ´É·ÂÄ¡ ÃÊ±âÈ­
+        // Bullet ½ºÅ©¸³Æ®ÀÇ Init ÇÔ¼ö°¡ Vector3.zero¸¦ ¹ÞÀ¸¹Ç·Î, ÀÌµ¿ ¹æÇâÀº bullet ÀÚÃ¼°¡ ´ã´çÇÏ°Ô µË´Ï´Ù.
         bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);
-
-        AudioManager.Instance.PlaySfx(AudioManager.SFX.MELEE1);
     }
 
 }
