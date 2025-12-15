@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf63fa655c325d0439d26a2169ec05bd, type: 3}
-  m_Name: Item0
+  m_Name: Item7
   m_EditorClassIdentifier: 
-  Type: 0
-  itemId: 0
-  itemName: "\uB300\uAC80"
-  itemDesc: "\uB370\uBBF8\uC9C0{0}% \uC99D\uAC00\n\uD68C\uC804\uCCB4{1}\uAC1C \uCD94\uAC00"
-  itemIcon: {fileID: 1036557043, guid: 38dc8401ce9210e498f41033eb6c2f9b, type: 3}
-  baseDamage: 4.5
-  baseCount: 3
+  Type: 5
+  itemId: 7
+  itemName: "\uBB3C\uCE7C"
+  itemDesc: "\uB370\uBBF8\uC9C0{0}%\uC99D\uAC00\n\uD06C\uAE30 \uC99D\uAC00"
+  itemIcon: {fileID: 504476423, guid: 38dc8401ce9210e498f41033eb6c2f9b, type: 3}
+  baseDamage: 100
+  baseCount: 2
   damages:
   - 0.5
   - 1
   - 1.5
   - 2
   - 3
-  counts: 0100000001000000010000000100000002000000
-  projecTile: {fileID: 1886767409047701764, guid: ba97b5e2b867b4448afa671bd742596c, type: 3}
+  counts: 0000000001000000020000000300000005000000
+  projecTile: {fileID: 6596608933832183501, guid: 79e889f2549bf1f43a0cb76c14f6b447, type: 3}

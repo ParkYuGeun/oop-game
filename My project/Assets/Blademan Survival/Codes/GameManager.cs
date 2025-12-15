@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isLive;
 
     [Header("# Player Info")]
+    public int playerId;
     public float health;
     public float maxHealth = 100;
     public int level;
@@ -33,10 +34,12 @@ public class GameManager : MonoBehaviour
         Instance = this;            //�ʼ�
     }
 
-     public void GameStart()        //��ư�� �Ҵ�
+    public void GameStart(int index)        //��ư�� �Ҵ�
     {
+        playerId = index;
         health = maxHealth;
-        uiLevelUp.select(5);    //ù��°���� ����
+        uiLevelUp.select(index);    //ù��°���� ����
+        player.gameObject.SetActive(true);
         resume();
 
         AudioManager.Instance.PlayBgm(true);

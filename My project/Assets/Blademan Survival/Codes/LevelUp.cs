@@ -53,7 +53,15 @@ public class LevelUp : MonoBehaviour
                 break;          
             }
         }
-        for (int index = 0; index < ran.Length; index++) {
+
+        for (int index = 0; index < ran.Length; index++)
+        {
+            if (ran[index] >= 5) {
+                ran[index] = GameManager.Instance.playerId;
+            }
+        }
+
+            for (int index = 0; index < ran.Length; index++) {
             Item ranItem = Items[ran[index]];
             //선정된 아이템이 만렙이면 치료아이템으로 선정
             if (ranItem.level == ranItem.data.damages.Length)

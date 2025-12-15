@@ -16,14 +16,14 @@ MonoBehaviour:
   itemId: 5
   itemName: "\uCE7C"
   itemDesc: "\uB370\uBBF8\uC9C0{0}%\uC99D\uAC00\n\uD06C\uAE30 \uC99D\uAC00"
-  itemIcon: {fileID: -1862551790, guid: 64030e85581bcf84ab957c556e404f02, type: 3}
+  itemIcon: {fileID: -1461007088, guid: 38dc8401ce9210e498f41033eb6c2f9b, type: 3}
   baseDamage: 100
-  baseCount: 0
+  baseCount: 2
   damages:
   - 0.5
   - 1
   - 1.5
   - 2
   - 3
-  counts: 0100000001000000010000000100000001000000
+  counts: 0000000001000000020000000300000005000000
   projecTile: {fileID: 6596608933832183501, guid: e9720ad5520bc974699046c35fdc8250, type: 3}

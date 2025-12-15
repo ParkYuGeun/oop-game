@@ -4,6 +4,7 @@ using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class Weapon : MonoBehaviour
 {
     public int id;  //�� �ڵ� ���ο��� �ĺ��ϴ� update
@@ -11,10 +12,12 @@ public class Weapon : MonoBehaviour
     public float damage;
     public int count;   //���Ÿ� ���� , �ٰŸ��� -1
     public float speed; //����
+    public float initSpeed;
 
     float timer;    
     Player player;  
     Vector3 tempDir = Vector3.right;    
+    Vector3 boxSize = Vector3.one;
 
     void Awake()
     {
@@ -43,6 +46,8 @@ public class Weapon : MonoBehaviour
                 }
                 break;
             case 5:
+            case 6:
+            case 7:
                 timer += Time.deltaTime;
                 // Ÿ�̸Ӱ� ���� �ֱ�(speed + 1)�� ������ Ȱ��ȭ ����
                 if (timer > speed)
@@ -71,6 +76,9 @@ public class Weapon : MonoBehaviour
         if (id == 0)
             Batch();
 
+        if(id>=5)
+            sizeUp(count);
+
         player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);   //player������Ʈ�� �������ִ� �ڽ� �� ApplyGear�� �������ִ� ��� ������Ʈ���� ������
     }
 
@@ -84,6 +92,7 @@ public class Weapon : MonoBehaviour
         id = data.itemId;
         damage = data.baseDamage;
         count = data.baseCount;
+        initSpeed = data.baseCount;
         //������Id�� poolmanager �����Ϳ� ���ؼ� Ȯ���ϰ� index�ޱ�
         for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++) { 
             if(data.projecTile == GameManager.Instance.pool.prefabs[index])
@@ -104,7 +113,9 @@ public class Weapon : MonoBehaviour
                 speed = 0.4f;
                 break;
             case 5:
-                speed = 2;
+            case 6:
+            case 7:
+                speed = initSpeed;
                 break;
             default:
                 break;
@@ -162,6 +173,7 @@ public class Weapon : MonoBehaviour
         
         // 2. �θ� ���� ������Ʈ(�� ��ũ��Ʈ�� ���� ������Ʈ)�� �����Ͽ� Hierarchy ����
         bullet.parent = transform;
+        bullet.localScale = boxSize;
         // --- [���� �߰��� ��ġ �� ȸ�� ��� ����] ---
 
         // 3. �÷��̾��� �Է� ���� ���͸� ������ (dir)
@@ -200,4 +212,10 @@ public class Weapon : MonoBehaviour
         AudioManager.Instance.PlaySfx(AudioManager.SFX.MELEE1);
     }
 
+
+    void sizeUp(int index)
+    {
+        float scaleFactor = 1 + (index / 10f);
+        boxSize = Vector3.one * scaleFactor;
+    }
 }

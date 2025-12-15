@@ -48,7 +48,9 @@ public class Gear : MonoBehaviour
                     weapon.speed = 150 + (150 * rate);
                     break;
                 case 5:     //�ٰŸ��϶�
-                    weapon.speed = 3 * (1f - rate);
+                case 6:
+                case 7:
+                    weapon.speed = weapon.initSpeed-rate;
                     break;
                 default:    //���Ÿ��϶�
                     weapon.speed = 0.5f*(1f-rate);

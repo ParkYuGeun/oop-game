@@ -10,7 +10,8 @@ public class Enemy : MonoBehaviour
     public RuntimeAnimatorController[] animcon; //������ ���� �ٲ� ��Ų
     public Rigidbody2D target;                  //���� Player
     
-    bool isalive;  
+    bool isalive;
+    bool dotDamage;
 
     Animator anim;
     Rigidbody2D rigid;
@@ -38,7 +39,7 @@ public class Enemy : MonoBehaviour
         spriter.sortingOrder = 2;   //layer order ����
         anim.SetBool("Dead", false);    //enemy �ִϸ����� �� Dead�Ӽ� false�� 
         Health = maxHealth;
-        
+        dotDamage = false;
     }
 
     void FixedUpdate()
@@ -58,6 +59,10 @@ public class Enemy : MonoBehaviour
         Vector2 nextvec = dirvec.normalized * speed * Time.deltaTime;   //���� �޴� �̵�, time.deltatime������ �������� ������ ���� �����ӱ��� �ɸ� �ð�
         rigid.MovePosition(rigid.position+nextvec);                     //ȯ���� ��� �������� �ٸ��� ���� �ӵ��� �̵��ϰ� ���� 
         rigid.velocity = Vector2.zero;                      //�� ��ü�ӵ� ����
+
+        if (dotDamage) {
+            Health = Health - 1 * Time.deltaTime;
+        }
 
     }
 
@@ -107,6 +112,15 @@ public class Enemy : MonoBehaviour
 
             if (GameManager.Instance.isLive)
                 AudioManager.Instance.PlaySfx(AudioManager.SFX.DEAD);
+        }
+
+        if (collision.TryGetComponent(out Fire fire)) {
+            dotDamage = true;
+        }
+
+        if (collision.TryGetComponent(out Water water))
+        {
+            GameManager.Instance.health += 10;
         }
     }
 
