@@ -19,14 +19,6 @@ public class Reposition : MonoBehaviour
             return;
         Vector3 PlayerPosition = GameManager.Instance.player.transform.position;
         Vector3 MyPosition = transform.position;
-        float diffx = Mathf.Abs(PlayerPosition.x - MyPosition.x);
-        float diffy = Mathf.Abs(PlayerPosition.y - MyPosition.y);
-
-      
-
-        Vector3 PlayerDir = GameManager.Instance.player.inputVec;   //움직여야하는 방향
-        float dirx = PlayerDir.x < 0 ? -1 : 1;
-        float diry = PlayerDir.y < 0 ? -1 : 1;
 
         switch (transform.tag)
         {
@@ -41,19 +33,28 @@ public class Reposition : MonoBehaviour
                 break;
 
             case "Ground":
-                if (diffx > diffy)
+                float diffX = PlayerPosition.x - MyPosition.x;  //거리
+                float diffY = PlayerPosition.y - MyPosition.y;
+                float dirX = diffX < 0 ? -1 : 1;        //방향
+                float dirY = diffY < 0 ? -1 : 1;        
+                diffX = Mathf.Abs(diffX);
+                diffY = Mathf.Abs(diffY);
+
+                if (diffX > diffY)
                 {
-                    transform.Translate(Vector3.right * dirx * 40);
+                    transform.Translate(Vector3.right * dirX * 40);
                 }
-                else if (diffx < diffy)
+                else if (diffX < diffY)
                 {
-                    transform.Translate(Vector3.up * diry * 40);
+                    transform.Translate(Vector3.up * dirY * 40);
                 }
                 break;
 
-            case "Enemy":
+            case "Enemy":      
                 if (coll.enabled){
-                    transform.Translate(PlayerDir * 20 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0f));
+                    Vector3 distance = PlayerPosition - MyPosition;
+                    Vector3 ran = new Vector3(Random.Range(-3,3), Random.Range(-3,3),0);
+                    transform.Translate(ran + distance*2);
                 }
                 break;
         }

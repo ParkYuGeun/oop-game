@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
         scanner = GetComponent<Scanner>();
     }
 
-    void Update()
+/*    void Update()
     {
         if (!GameManager.Instance.isLive) {
             return;
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
         inputVec.x = Input.GetAxis("Horizontal");   //입력값에 따른 벡터값 증가
         inputVec.y = Input.GetAxis("Vertical");
         //GetAxisRaw = 딱딱 끊어지는 인풋
-    }
+    }*/
 
     void FixedUpdate()
     {
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        Vector2 nextVec = inputVec.normalized*speed*Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec*speed*Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position+nextVec); //inputvec을 캐릭터에 때려박음
     }
 
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
      void OnCollisionStay2D(Collision2D collision)   //충돌하고있을시
     {
         if (!GameManager.Instance.isLive || collision.gameObject.CompareTag("Building"))
-            return;
+            return; 
 
         GameManager.Instance.health -= Time.deltaTime * 10;
 
@@ -68,5 +69,9 @@ public class Player : MonoBehaviour
             anim.SetTrigger("dead");
             GameManager.Instance.GameOver();
         }
+    }
+
+    void OnMove(InputValue value) {
+        inputVec = value.Get<Vector2>();
     }
 }

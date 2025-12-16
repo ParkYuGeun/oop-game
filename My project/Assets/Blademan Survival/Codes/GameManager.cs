@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public PoolManager pool;
     public LevelUp uiLevelUp;
     public Result uiResult;
+    public Transform uiJoy;
     public GameObject EnemyCleaner;
 
 
@@ -61,6 +62,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);  //index��� "�� �̸�"���ε� ȣ�� ����
     }
 
+    public void GameQuit()     //result ��ư�� �Ҵ�
+    {
+        Application.Quit();
+    }
+
     void Update()
     {
         if (!isLive) {
@@ -94,12 +100,14 @@ public class GameManager : MonoBehaviour
     {
         isLive = false;
         Time.timeScale = 0;
+        uiJoy.localScale = Vector3.zero;
     }
 
     public void resume()
     {
         isLive = true;
         Time.timeScale = 1;
+        uiJoy.localScale = Vector3.one;
     }
 
     IEnumerator GameOverRoutine()

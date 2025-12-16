@@ -8,10 +8,13 @@ public class Spawner : MonoBehaviour
     public SpawnData[] SpawnData;
     float timer;
     int level;
+    public float levelTime;
+
 
     private void Awake()
     {
         SpawnPoint = GetComponentsInChildren<Transform>();
+        levelTime = GameManager.Instance.maxGameTime / SpawnData.Length;
     }
 
     void Update()
@@ -21,7 +24,7 @@ public class Spawner : MonoBehaviour
             return;
         }
         timer += Time.deltaTime;    //10초당 레벨 1씩 올라가는 기능
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.GameTime / 10f), SpawnData.Length-1);  //mathf.floortoint = int형변환(버림) 올림은 celltoint
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.GameTime / levelTime), SpawnData.Length-1);  //mathf.floortoint = int형변환(버림) 올림은 celltoint
 
         if (timer > SpawnData[level].spawntime)
         {
