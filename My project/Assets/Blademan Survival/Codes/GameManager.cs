@@ -29,8 +29,10 @@ public class GameManager : MonoBehaviour
     public Transform uiJoy;
     public GameObject EnemyCleaner;
 
+    float backBtnTime = 0f;
 
-     void Awake()
+
+    void Awake()
     {
         Instance = this;            //�ʼ�
          Application.targetFrameRate = 60;
@@ -82,6 +84,23 @@ public class GameManager : MonoBehaviour
             GameVictory();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // 1. 현재 시간이 마지막으로 누른 시간 + 2초보다 아직 작다면 (2초 안에 두 번 누름)
+            if (Time.time < backBtnTime + 2f)
+            {
+                Application.Quit();
+            }
+            // 2. 처음 눌렀거나 2초가 지났다면
+            else
+            {
+                // 토스트 메시지나 UI를 띄워주면 좋습니다.
+                Debug.Log("'뒤로' 버튼을 한 번 더 누르면 종료됩니다.");
+
+                // 현재 시간을 저장해서 카운트다운 시작
+                backBtnTime = Time.time;
+            }
+        }
     }
 
     public void GetExp()
