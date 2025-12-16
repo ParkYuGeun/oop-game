@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Result : MonoBehaviour
 {
+    // Start is called before the first frame update
     public GameObject[] titles;
-    
+
     public void Lose()
     {
         titles[0].SetActive(true);

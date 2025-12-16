@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class Item : MonoBehaviour
@@ -12,70 +11,93 @@ public class Item : MonoBehaviour
     public Weapon weapon;
     public Gear gear;
 
-    Image Icon;
+    Image icon;
     Text textLevel;
     Text textName;
     Text textDesc;
 
+
     void Awake()
     {
-        Icon = GetComponentsInChildren<Image>()[1];
-        Icon.sprite = data.itemIcon;
-
+        icon = GetComponentsInChildren<Image>()[1]; //�ڱ��ڽ��� �迭�� 0��°��
+        icon.sprite = data.itemIcon;
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
         textName = texts[1];
         textDesc = texts[2];
+
+    }
+
+    private void OnEnable() //�ؽ�Ʈ ����
+    {
         textName.text = data.itemName;
-    }
-    void OnEnable()
-    {
-        textLevel.text = "Lv." + (level + 1);
-
-        switch (data.itemType)
+        textLevel.text = "LV." + (level + 1);
+        switch (data.Type)
         {
-            case ItemData.ItemType.Katana:
-            case ItemData.ItemType.Bullet0:
-            case ItemData.ItemType.Bullet1:
-                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
-            break;
-            // 아이템이 추가된다면 여기에 case를 추가
-            // 여기는 매개변수 1개인 아이템의 경우 추가, 위는 2개인 경우
-            default: // 설명 외에 구태여 매개변수가 필요 없는 desc라면 여기에 추가 
+            case ItemData.ItemType.Melee:
+            case ItemData.ItemType.Range:
+                textDesc.text = string.Format(data.itemDesc, data.damages[level]*100, data.counts[level]);
                 break;
-        }   
+            case ItemData.ItemType.Shoe:
+            case ItemData.ItemType.Glove:
+            case ItemData.ItemType.Blade:
+                textDesc.text = string.Format(data.itemDesc, data.damages[level]*100);
+
+                break;
+            case ItemData.ItemType.Heal:
+                textDesc.text = string.Format(data.itemDesc);
+                break;
+        }
+
+
     }
 
-    public void OnClick()
+
+
+    public void onClick()
     {
-        switch (data.itemType)
-        {   // 아이템 필요시 추가 요망
-            case ItemData.ItemType.Katana:
-            case ItemData.ItemType.Bullet0:
-            case ItemData.ItemType.Bullet1:
+        switch (data.Type)
+        {
+            case ItemData.ItemType.Melee:
+            case ItemData.ItemType.Range:
+            case ItemData.ItemType.Blade:
                 if (level == 0)
                 {
                     GameObject newWeapon = new GameObject();
-                    weapon = newWeapon.AddComponent<Weapon>();
+                    weapon = newWeapon.AddComponent<Weapon>();  //addComponenet�� gameObject�� �ƴ϶� Weapon������Ʈ�� ��ȯ ���� �̹� Weapon���� ����� �� ��
                     weapon.Init(data);
                 }
-                else
-                {   
-                    // 수식 필요시 변경 요망
+                else {
                     float nextDamage = data.baseDamage;
                     int nextCount = 0;
-
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.counts[level];
 
                     weapon.Levelup(nextDamage, nextCount);
                 }
+                level++;
+                break;
+            case ItemData.ItemType.Glove:
+            case ItemData.ItemType.Shoe:
+                if (level == 0)
+                {
+                    GameObject newGear = new GameObject();
+                    gear = newGear.AddComponent<Gear>();
+                    gear.Init(data);
+                }
+                else {
+                    float nextRate = data.damages[level];
+                    gear.LevelUp(nextRate);
+                }
+                level++;
+                break;
+            case ItemData.ItemType.Heal:
+                GameManager.Instance.health = GameManager.Instance.maxHealth;
                 break;
         }
+        
 
-        level++;
-
-        if(level == data.damages.Length)
+        if (level == data.damages.Length)
         {
             GetComponent<Button>().interactable = false;
         }

@@ -1,42 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Gear : MonoBehaviour
 {
-    public ItemData.ItemType type;
-    public float rate;
+    public ItemData.ItemType type;  //�����Ϳ��� ���Ⱑ �ƴѰ͵�
+    public float rate;              //������ ��ġ
 
-    public void Init(ItemData data)
-    {
-        // Basic Set
-        name = "Gear " + data.itemId;
+    public void Init(ItemData data) {
+        //Basic
+        name = "Gear"+data.itemId;
         transform.parent = GameManager.Instance.player.transform;
         transform.localPosition = Vector3.zero;
-
-        // Property Set
-        type = data.itemType;
-        rate = data.damages[0];
+        //Property
+        type = data.Type;   //���п�
+        rate = data.damages[0]; //��ġ
         ApplyGear();
     }
 
-    public void LevelUp(float rate)
-    {
+    public void LevelUp(float rate) {
         this.rate = rate;
         ApplyGear();
     }
 
-    void ApplyGear()
+    public void ApplyGear()
     {
         switch (type)
-        {   // 임시로 아무 아이템이나 넣어놨으므로 필요하다면 Item, Weapon에서
-            // 내용물을 추가하고 이름을 변경할 것
-            case ItemData.ItemType.Bullet0:
+        {
+            case ItemData.ItemType.Glove:
                 RateUp();
                 break;
-            case ItemData.ItemType.Bullet1:
+            case ItemData.ItemType.Shoe:
                 SpeedUp();
-                break; 
+                break;
         }
     }
 
@@ -44,15 +41,19 @@ public class Gear : MonoBehaviour
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
 
-        foreach(Weapon weapon in weapons)
+        foreach (Weapon weapon in weapons)
         {
-            switch (weapon.id)
-            {
-                case 0:
+            switch (weapon.id) {
+                case 0:     //�ٰŸ��϶�
                     weapon.speed = 150 + (150 * rate);
                     break;
-                default:
-                    weapon.speed = 0.5f * (1f - rate);
+                case 5:     //�ٰŸ��϶�
+                case 6:
+                case 7:
+                    weapon.speed = weapon.initSpeed-rate;
+                    break;
+                default:    //���Ÿ��϶�
+                    weapon.speed = 0.5f*(1f-rate);
                     break;
             }
         }
@@ -61,6 +62,6 @@ public class Gear : MonoBehaviour
     void SpeedUp()
     {
         float speed = 3;
-        GameManager.Instance.player.speed = speed + speed * rate;
+        GameManager.Instance.player.speed = speed+speed*rate;
     }
 }
