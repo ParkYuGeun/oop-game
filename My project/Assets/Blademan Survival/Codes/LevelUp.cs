@@ -5,73 +5,67 @@ using UnityEngine;
 public class LevelUp : MonoBehaviour
 {
     RectTransform rect;
-    Item[] Items;
-
+    Item[] items;
+    
     void Awake()
     {
-         rect = GetComponent<RectTransform>();
-        Items = GetComponentsInChildren<Item>(true);    //활성화 되어있는 오브젝트만 가져오기
+        rect = GetComponent<RectTransform>();
+        items = GetComponentsInChildren<Item>(true);
     }
 
-    public void Show()  //게임매니저에서 컨트롤
+    public void Show()
     {
         Next();
         rect.localScale = Vector3.one;
-        GameManager.Instance.stop();
-
-        AudioManager.Instance.PlaySfx(AudioManager.SFX.LEVELUP);
-        AudioManager.Instance.EffectBgm(true);
+        GameManager.Instance.Stop();
     }
 
-    public void Hide()  //하위오브젝튿의 버튼에서 컨트롤
+    public void Hide()
     {
         rect.localScale = Vector3.zero;
-        GameManager.Instance.resume();
-
-        AudioManager.Instance.PlaySfx(AudioManager.SFX.SELECT);
-        AudioManager.Instance.EffectBgm(false);
+        GameManager.Instance.Resume();
     }
 
-    public void select(int index) { //게임매니저에서 처음 1번 사용
-        Items[index].onClick();
-       
+    public void Select(int index)
+    {
+        items[index].OnClick();
     }
 
-    void Next() {
-        //전부 비활성화
-        foreach (Item item in Items) {  
-            item.gameObject.SetActive(false);   
-        }
-        //무작위아이템 중 3개 선정, 중복 허용x 
-        int[] ran = new int[3];
-        while (true) {
-            ran[0] = Random.Range(0,Items.Length);
-            ran[1] = Random.Range(0, Items.Length);
-            ran[2] = Random.Range(0, Items.Length);
-
-            if (ran[0] != ran[1] && ran[0] != ran[2] && ran[1] != ran[2]) {
-                break;          
-            }
-        }
-
-        for (int index = 0; index < ran.Length; index++)
+    void Next()
+    {
+        // 1. 모든 아이템 비활성화
+            foreach (Item item in items)
         {
-            if (ran[index] >= 5) {
-                ran[index] = GameManager.Instance.playerId;
-            }
+            item.gameObject.SetActive(false);
+        }
+        // 2. 그 중에서 랜덤하게 3개 아이템 비활성화
+            int[] ran = new int[3];
+        while (true)
+        {
+            ran[0] = Random.Range(0, items.Length);
+            ran[1] = Random.Range(0, items.Length);
+            ran[2] = Random.Range(0, items.Length);
+
+            if (ran[0] != ran[1] && ran[1] != ran[2] && ran[0] != ran[2])
+                break;
         }
 
-            for (int index = 0; index < ran.Length; index++) {
-            Item ranItem = Items[ran[index]];
-            //선정된 아이템이 만렙이면 치료아이템으로 선정
+        for(int index = 0; index < ran.Length; index++)
+        {
+            Item ranItem = items[ran[index]];
+            ranItem.gameObject.SetActive(true);
+
+            // 3. 만렙 아이템의 경우 소비 아이템으로 대체
             if (ranItem.level == ranItem.data.damages.Length)
             {
-                Items[Random.Range(4,4)].gameObject.SetActive(true);
+            // 아직 소비 아이템이 없어서 일단은 주석처리
+            // 필요한 경우 소비 아이템 추가 후 거기에 맞춰 Range의 범위 변경
+            //  items[Random.Range(4, 7)].gameObject.SetActive(true);
             }
-            else {
+            else
+            {
                 ranItem.gameObject.SetActive(true);
             }
         }
-    
     }
 }

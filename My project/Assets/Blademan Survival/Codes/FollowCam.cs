@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowCam : MonoBehaviour  
+public class FollowCam : MonoBehaviour
 {
-    RectTransform rect;     //hp바 UI에서 사용
+    RectTransform rect;
 
      void Awake()
     {

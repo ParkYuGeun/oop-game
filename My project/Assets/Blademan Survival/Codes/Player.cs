@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -22,32 +21,27 @@ public class Player : MonoBehaviour
         scanner = GetComponent<Scanner>();
     }
 
-/*    void Update()
-    {
-        if (!GameManager.Instance.isLive) {
+    void Update()
+    {  
+        if(!GameManager.Instance.isLive)
             return;
-        }   
         inputVec.x = Input.GetAxis("Horizontal");   //�Է°��� ���� ���Ͱ� ����
         inputVec.y = Input.GetAxis("Vertical");
         //GetAxisRaw = ���� �������� ��ǲ
-    }*/
+    }
 
     void FixedUpdate()
     {
-        if (!GameManager.Instance.isLive)
-        {
+        if(!GameManager.Instance.isLive)
             return;
-        }
-        Vector2 nextVec = inputVec*speed*Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized*speed*Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position+nextVec); //inputvec�� ĳ���Ϳ� ��������
     }
 
     void LateUpdate()
     {
-        if (!GameManager.Instance.isLive)
-        {
+        if(!GameManager.Instance.isLive)
             return;
-        }
         anim.SetFloat("speed",inputVec.magnitude);  //.magnitude ������ ��������
         if (inputVec.x != 0)
         {
@@ -55,23 +49,22 @@ public class Player : MonoBehaviour
         }
     }
 
-     void OnCollisionStay2D(Collision2D collision)   //�浹�ϰ�������
+    void OnCollisionStay2D(Collision2D collision)
     {
-        if (!GameManager.Instance.isLive || collision.gameObject.CompareTag("Building"))
-            return; 
+        if(!GameManager.Instance.isLive)
+            return;
 
         GameManager.Instance.health -= Time.deltaTime * 10;
 
-        if (GameManager.Instance.health < 0) {
-            for (int index = 2; index < transform.childCount; index++) {
+        if(GameManager.Instance.health < 0)
+        {
+            for (int index = 2; index < transform.childCount; index++)
+            {
                 transform.GetChild(index).gameObject.SetActive(false);
             }
-            anim.SetTrigger("dead");
+            // 플레이어 사망 애니메이션이 없음 여기서 버그 발생
+            anim.SetTrigger("Dead");
             GameManager.Instance.GameOver();
         }
-    }
-
-    void OnMove(InputValue value) {
-        inputVec = value.Get<Vector2>();
     }
 }

@@ -8,7 +8,6 @@ TagManager:
   - Area
   - Enemy
   - Bullet
-  - Building
   layers:
   - Default
   - TransparentFX

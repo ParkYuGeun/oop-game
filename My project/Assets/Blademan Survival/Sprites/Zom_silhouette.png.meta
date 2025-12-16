@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61ead952aff2edc4e9ddfa20b0e4f67e
+guid: f4e5ca78c92fe044b8466c7155f294d7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -91,175 +91,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Zom_silhouette_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 571
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 325c7d95102c65f40aa9c1956139264f
-      internalID: -859836096
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zom_silhouette_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 571
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d5b069c1001b2b46a58e5d51794842a
-      internalID: 1175849984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zom_silhouette_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 571
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c0a0171c4af0bd469c53309079636c0
-      internalID: -1802052052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zom_Hit
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 571
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a982ce9e197351d4780989e92841c64b
-      internalID: -625312670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zom_silhouette_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 118
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a7651179a5481c4d83d9628d2b51bb2
-      internalID: -258822698
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zom_silhouette_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 118
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b6c84a3e6d2117468c9ccb159bbe274
-      internalID: -407032309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zom_silhouette_6
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 118
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2cf1c23076b0f7a448466146cb6834e8
-      internalID: 26589893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zom_silhouette_7
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 118
-        width: 256
-        height: 453
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 297b5216f26d34443b9ddbeec322eb91
-      internalID: -414201546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -270,15 +102,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Zom_Hit: -625312670
-      Zom_silhouette_0: -859836096
-      Zom_silhouette_1: 1175849984
-      Zom_silhouette_2: -1802052052
-      Zom_silhouette_4: -258822698
-      Zom_silhouette_5: -407032309
-      Zom_silhouette_6: 26589893
-      Zom_silhouette_7: -414201546
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
