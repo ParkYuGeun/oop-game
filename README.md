@@ -9,7 +9,9 @@
 
 | 메인 플레이 화면 |
 | :---: | 
-| *(플레이 GIF 또는 이미지 링크 입력)* |
+| ![스크린샷1](./screenshot/BS1.png) |
+| ![스크린샷2](./screenshot/BS2.png) |
+| ![스크린샷3](./screenshot/BS3.png) |
 
 ---
 
