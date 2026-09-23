@@ -7,11 +7,9 @@
 
 ## 📸 Demo & Screenshots
 
-| 메인 플레이 화면 |
-| :---: | 
-| ![스크린샷1](./Screenshot/bs1.png) |
-| ![스크린샷2](./Screenshot/bs2.png) |
-| ![스크린샷3](./Screenshot/bs3.png) |
+| :---: | 메인 플레이 화면 | :---: |
+| :---: | :---: | :---: | 
+| :---: | <img src="./Screenshot/bs1.PNG" width="60px" height = "100px" alt="이미지 설명"> | :---: |
 
 ---
 
