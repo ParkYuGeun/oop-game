@@ -1,6 +1,6 @@
 # Blade
 
-> **뱀파이어서바이버를 모티브로 한 로그라이크 탄막 슈팅 게임**  
+> **뱀파이어서바이버를 모티브로 한 로그라이크 검사 게임**  
 > 2024년 개봉한 귀멸의칼날 극장판을 보고 총 대신 검을 휘두르는 로그라이크 게임을 기획·제작하고 싶어졌음
 
 ---
@@ -33,7 +33,7 @@
 | :--- | :--- |
 | **Engine** | Unity 2021.3.45f1 |
 | **Render Pipeline** | Universal Render Pipline(URP) |
-| **Target Device** | PC |
+| **Target Device** | Mobile(android) |
 | **SDK / Framework** | Input System Package |
 | **Language** | C# |
 | **IDE** | Visual Studio|
