@@ -9,9 +9,9 @@
 
 | 메인 플레이 화면 |
 | :---: | 
-| ![스크린샷1](./screenshot/BS1.png) |
-| ![스크린샷2](./screenshot/BS2.png) |
-| ![스크린샷3](./screenshot/BS3.png) |
+| ![스크린샷1](./Screenshot/bs1.png) |
+| ![스크린샷2](./Screenshot/bs2.png) |
+| ![스크린샷3](./Screenshot/bs3.png) |
 
 ---
 
