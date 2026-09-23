@@ -7,9 +7,9 @@
 
 ## 📸 Demo & Screenshots
 
-| :---: | 메인 플레이 화면 | :---: |
+| 게임시작시 | 메인 플레이 화면 | 증강 |
 | :---: | :---: | :---: | 
-| :---: | <img src="./Screenshot/bs1.PNG" width="60px" height = "100px" alt="이미지 설명"> | :---: |
+| <img src="./Screenshot/bs1.PNG" width="300px" height = "750px" alt="이미지 설명"> | <img src="./Screenshot/bs2.PNG" width="300px" height = "750px" alt="이미지 설명"> | <img src="./Screenshot/bs3.PNG" width="300px" height = "750px" alt="이미지 설명"> |
 
 ---
 
